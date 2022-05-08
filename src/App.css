@@ -1,38 +1,184 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+
+
+
+
+
+
+
+
+
+body {
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+main{
+    width: 1440px;
+    height: 1020xp;
+    background:   hsl(0, 0%, 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.avatar {
+  width: 40px;
+  height: 40px;
 }
+
+nav {
+  display: flex;
+  width: 1140px;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 200px;
+}
+
+.category {
+   display:flex;
+   
+}
+
+.category > p {
+   margin-left: 40px;
+   margin-top: 25px;
+}
+
+.category  h1 {
+  margin-right: 40px;
+}
+
+.imgBox {
+   margin-right: 100px
+}
+
+.imgBox img{
+   margin-left: 30px;
+}
+
+hr {
+    width: 1040px;
+}
+
+.container {
+  width: 1020px;
+  display: flex;
+  justify-content: center;
+  margin-left: 100px
+}
+
+.product-img{
+  margin-top: 80px;
+  margin-left: 250px;
+  margin-right: 80px;
+}
+
+.zoom-shoe {
+  width: 400px;
+  height: 450px;
+  border-radius: 10px;
+ 
+}
+
+.shoe-flex {
+  display: flex;
+}
+
+.shoe {
+  width: 80px;
+  height: 80px;
+  margin-left: 25px;
+  margin-top: 25px;
+  border-radius: 5px;
+}
+
+.shoe.first{
+  margin-left: 0px;
+
+}
+
+.product-info {
+  margin-top: 100px;
+
+}
+
+.adv {
+  display:flex;
+  flex-direction: column;
+  margin: 0;
+  justiFy-content: center;
+}
+
+.cart-button {
+   display: flex;
+   height: 60px;
+   width: 450px;
+}
+
+.bigtitle {
+  font-size: 45px;
+}
+
+.title {
+  font-size: 16px;
+  color: rgb(255, 123, 0);
+}
+
+.sneaker {
+     font-size: 30px;
+     color: blue
+}
+
+.count {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 140px;
+  height: 55px;
+  background: hsl(220, 14%, 75%);
+  border-radius: 5px;
+  margin-top: 4px;
+  margin-right: 10px;
+}
+
+.percent {
+   font-size: 20px;
+   color: orangered
+}
+
+.addtocart {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 200px;
+     height: 30px;
+     text-align: center;
+     background: orangered;
+     padding: 15px 30px;
+     border-radius: 10px;
+
+}
+
+.text {
+    font-size: 20px;
+}
+
+
+/* 
+
+Very vark blue: hsl(220, 13%, 13%)
+Dark grayish blue: hsl(219, 9%, 45%)
+Grayish blue: hsl(220, 14%, 75%)
+Light grayish blue: hsl(223, 64%, 98%)
+White: hsl(0, 0%, 100%)
+Black (with 75% opacity for lightbox background): hsl(0, 0%, 0%)
+
+*/
+
+
+
