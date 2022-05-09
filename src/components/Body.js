@@ -17,7 +17,7 @@ import React from 'react';
 
 function Body({close ,menu ,minus ,next, plus,cart, 
     previous,product1 ,thumbnail1,product2 ,thumbnail2 
-    ,product3,thumbnail3,productt4,thumbnail4 ,del}) {
+    ,product3,thumbnail3,productt4,thumbnail4,handleCount ,del, addCart, item}) {
 
     return (  
         <div className="container">
@@ -37,15 +37,15 @@ function Body({close ,menu ,minus ,next, plus,cart,
                      <h1 className="bigtitle"> <p className="title">SNEAKER COMPANY</p> Fall Limited Edition <br />Sneakers </h1></div> 
                 
                  <p>These low-profile sneakers are your perfect casual wear companion.Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.</p>
-                 <h1>$125.00 <span className='percent'>50%</span></h1>
-                 <h3>$250.00</h3>
+                 <h1>{item.price} <span className='percent'>50%</span></h1>
+                 <h3 className="discount">$250.00</h3>
                  <div className="cart-button">
-                     <div className="count">
+                     <div className="count" onClick={handleCount}>
                          <img className='minus' src={minus} alt="" />
-                         <p>0</p>
+                         {item.count}
                          <img className='plus' src={plus} alt="" />
                      </div>
-                     <div className='addtocart'><img src={cart} alt=""/><span className='text'>Add to cart</span></div>
+                     <div className='addtocart' onClick={addCart}><img src={cart} alt=""/><span className='text'>Add to cart</span></div>
                  </div>
               </div>
           </div>
