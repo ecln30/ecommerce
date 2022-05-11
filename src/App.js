@@ -1,17 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import './App.css'
 import React from 'react';
 import Navbar from "./components/Navbar"
@@ -34,90 +20,130 @@ import thumbnail4 from "./images/image-product-4-thumbnail.jpg"
 import Cart from "./components/Cart"
 import del from  "./images/icon-delete.svg"
 import Body from "./components/Body"
+import {useState, useEffect} from "react"
 
 
 function App() {
-  const [count, setCount] = React.useState(0)
-  const [isHidden, setIsHidden] = React.useState(true)
-  const [price, setPrice] = React.useState("125.00")
-  const [name, setName] = React.useState("Fall Limited Edition Sneakers")
-  const [img, setImg] = React.useState("thumbnail1")
-  const [ item, setItem] = React.useState({
-     name: name,
-     count: count,
-     price: price,
-     img: img 
+  const [count, setCount] = useState(0)
+  const [isHidden, setIsHidden] = useState(true)
+  const [price, setPrice] = useState("125.00")
+  const [name, setName] = useState("Fall Limited Edition Sneakers")
+  const [img, setImg] = useState(thumbnail1)
+  const [product, setProduct] = useState(product1)
+  const [isActive, setIsActive] = useState(false);
+  const [isHover, setIsHover] = useState(false)
+  const [styles, setStyles] = useState({})
+  const [ item, setItem] = useState({
+    name: name,
+    count: count,
+    price: price,
+    total: price * count,
+    img:[img, del]
   })
-  function EmptyCart(e) {
+
+useEffect(() => {
+  localStorage.setItem('num', JSON.stringify(count));
+}, [count]);
+
+useEffect( f => {
+  const stored = localStorage.getItem("num");
+  const initial = stored ? JSON.parse(stored) : 0;
+   console.log(initial)
+   setCount(initial)
+}, [])
+
+
+ function toggleCart(e) {
     console.log("from EmptyCart function")
       setIsHidden(item => item = !item)
       console.log(isHidden)
   }
 
-  function category(e){
-      
-      let text = e.target.textContent
-      const el = e.target.parentNode
-      console.log(text,el)
-      if(text === "Collection"){
-         el.classList.add("select-bar")
-         el.style.position = "left: 200px"
-      }
-  }
-  console.log(item)
   function handleCount(e) {
       const el = e.target
-      console.log(el)
       if( el.matches(".minus")) {
-         setCount( count > 0 ? count - 1 : 0 )
+         setCount(count - 1 )
          setItem(preItem => {
-            return {
-               ...preItem, count: count
-            }
+           return {...preItem, count: count - 1}
          })
-         console.log(item.count)
       } else if(el.matches(".plus")) {
          setCount(count + 1)
          setItem(preItem => {
-           return {
-             ...preItem, count: count
-           }
+           return { ...preItem, count: count + 1 }
          })
       }
   }
 
-  function addCart() {
-        console.log("this from add to cart")
-       return Object.keys(item).map(item => {
+    function handleImg(e) {
+       let el = e.currentTarget
+       if(el.src === thumbnail1) {
+         setProduct(product1)
+       } 
+       else if(el.src === thumbnail2) {
+         setProduct(product2)
+       }
+       else if(el.src === thumbnail3) {
+         setProduct(product3)
+       }
+       else if(el.src === thumbnail4) {
+         setProduct(product4)
+       }
+  }
 
-        if(item.count !== 0) {
-          <div>
-            <card className="product-data">
-            <img src={item.img} alt="" />
-            <div className="info">
-            <p>{item.name}</p>
-             <p>{item.price}</p>
-            </div>
-            <i>{item.del}</i>
-            </card>
-            <button className="checkout-btn">
-              Checkout
-            </button>
-          </div>
-        } else {
-           <p>Your Cart is empty.</p>
-        }
-       })
+  function addCart(){
+    setIsActive(true)
+  }
 
-  }  
-  
+  function cmdEnter(e) {
+      const el = e.currentTarget
+      if(el.textContent === "Collections") {
+         setStyles({left: -320, width: 80})
+      }
+      else if(el.textContent === "Man" ) {
+          setStyles({left: - 224, width: 40  })
+      }
+      else if(el.textContent === "Woman" ) {
+          setStyles({left: -145, width: 50})
+      }
+      else if(el.textContent === "About" ) {
+          setStyles({left: -60, width: 50 })
+      }
+      else if(el.textContent === "Contact" ) {
+         setStyles({left: 30 , width: 60})
+      }
+  }
+
+  function cmdLeave(e) {
+       const el = e.currentTarget
+       if(el.textContent === "Collections") {
+          setStyles({display: "none"})
+       }
+       else if(el.textContent === "Man" ) {
+           setStyles({display: "none"})
+       }
+       else if(el.textContent === "Woman" ) {
+           setStyles({display: "none"})
+       }
+       else if(el.textContent === "About" ) {
+           setStyles({display: "none"})
+       }
+       else if(el.textContent === "Contact" ) {
+          setStyles({display: "none"})
+       }
+  }
+
+  function cmdClick(e) {
+    
+  }
+
   return (
     <main className="App">
-      <Navbar cart={cart} avatar={avatar} EmptyCart={EmptyCart} category={category} />
-      
-      <hr className="selectbar" />
+      <Navbar cart={cart} avatar={avatar} toggleCart={toggleCart} addCart={addCart} isActive={isActive} item={item} cmdLeave={cmdLeave} cmdEnter={cmdEnter} 
+      cmdClick={cmdClick}
+      />
+      <hr className="selectbar" style={styles} />
       <hr />
-     { !isHidden && <Cart addCart={addCart} item={item} />}
+     { !isHidden && <Cart  item={item} />}
       <Body 
         close={close} 
         menu={menu} 
@@ -125,17 +151,16 @@ function App() {
         minus={minus} 
         plus={plus} 
         previous={previous}
-        product1={product1} 
         thumbnail1={thumbnail1}
-        product2={product2}
         thumbnail2={thumbnail2} 
-        product3={product3}
         thumbnail3={thumbnail3}
-        product4={thumbnail4}
-        thumbnail4={product4}
+        thumbnail4={thumbnail4}
         handleCount={handleCount}
+        handleImg={handleImg}
+        product={product}
+        isActive={isActive}
         addCart={addCart}
-        item={item}
+        count={count}
         cart={cart}
         del={del}
       />

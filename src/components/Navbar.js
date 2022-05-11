@@ -13,25 +13,51 @@
 
 
 import React from 'react';
-// <img src={images['doggy.png']} />
-function Navbar({cart,avatar,category, EmptyCart}){
+function Navbar({cart,avatar,category, toggleCart, addCart, item, isActive, cmdEnter, cmdLeave, cmdClick
+}){
 
    
     return ( 
         <nav>
-          <div className="category" onClick={category}>
+          <div className="category" >
           <h1>sneakers</h1>
-          <p>Collections</p> 
-          <p>Man</p> 
-          <p>Woman</p> 
-          <p>About</p> 
-          <p>Contact</p>
+          <p  
+          onClick={cmdClick} 
+          onMouseEnter={cmdEnter}
+          onMouseLeave={cmdLeave}
+          >Collections</p> 
+          <p   
+          onClick={cmdClick}  
+          onMouseEnter={cmdEnter}
+          onMouseLeave={cmdLeave}
+          >Man</p> 
+          <p 
+          onClick={cmdClick}    
+          onMouseEnter={cmdEnter}
+          onMouseLeave={cmdLeave}
+          >Woman</p> 
+          <p   
+          onClick={cmdClick}  
+          onMouseEnter={cmdEnter}
+          onMouseLeave={cmdLeave}
+          >About</p> 
+          <p   
+          onClick={cmdClick}  
+          onMouseEnter={cmdEnter}
+          onMouseLeave={cmdLeave}
+          >Contact</p>
           </div>
           <div className="imgBox">
-
-          <img  className="cart" src={cart} onClick={EmptyCart} alt="" /> 
+           <div className="cart-img">
+             <p className="amount"
+             style={{
+               visibility: isActive ? "visible" : "hidden"
+             }}
+             >{item.count}</p>
+             <img  className="cart" src={cart} onClick={toggleCart} alt="" /> 
+           </div>
           <img className="avatar" src={avatar} alt="" />
-          </div>
+        </div>
         </nav>
      );
 }
