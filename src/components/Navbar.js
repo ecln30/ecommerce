@@ -1,4 +1,3 @@
-
 import React from 'react';
 function Navbar({cart,avatar, toggleCart, menu, item, isShow, cmdEnter, cmdLeave, cmdClick
 }){
@@ -8,30 +7,20 @@ function Navbar({cart,avatar, toggleCart, menu, item, isShow, cmdEnter, cmdLeave
         <nav>
           <div className="category" >
           <h1>sneakers</h1>
-          <p  
-          onClick={cmdClick} 
-          onMouseEnter={cmdEnter}
-          onMouseLeave={cmdLeave}
+          <p  onMouseEnter={cmdEnter}
+              onMouseLeave={cmdLeave}
           >Collections</p> 
-          <p   
-          onClick={cmdClick}  
-          onMouseEnter={cmdEnter}
-          onMouseLeave={cmdLeave}
+          <p  onMouseEnter={cmdEnter}
+              onMouseLeave={cmdLeave}
           >Man</p> 
-          <p 
-          onClick={cmdClick}    
-          onMouseEnter={cmdEnter}
-          onMouseLeave={cmdLeave}
+          <p  onMouseEnter={cmdEnter}
+              onMouseLeave={cmdLeave}
           >Woman</p> 
-          <p   
-          onClick={cmdClick}  
-          onMouseEnter={cmdEnter}
-          onMouseLeave={cmdLeave}
+          <p  onMouseEnter={cmdEnter}
+              onMouseLeave={cmdLeave}
           >About</p> 
-          <p   
-          onClick={cmdClick}  
-          onMouseEnter={cmdEnter}
-          onMouseLeave={cmdLeave}
+          <p  onMouseEnter={cmdEnter}
+              onMouseLeave={cmdLeave}
           >Contact</p>
           </div>
           <div className="imgBox">
