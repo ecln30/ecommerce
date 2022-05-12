@@ -1,27 +1,30 @@
-import React from 'react';
+import React from 'react'
 
-function Body({close ,menu ,minus ,next, plus,cart, 
-    previous,thumbnail1,thumbnail2 ,thumbnail3,thumbnail4,handleCount, del, addCart, count,  product, handleImg,}) {
+function Body({minus ,plus,cart,thumbnail1,thumbnail2 ,thumbnail3,thumbnail4,handleCount, addCart, count,  product, handleImg, ShoeClick}) {
 
     return (  
         <div className="container">
           <div className="product-img">
-              <img className='zoom-shoe' src={product} alt="" />
-              <div className="shoe-flex" >
-                  <img className="shoe first" src={thumbnail1} 
-                    onMouseEnter={handleImg}
-                  alt="" />
-                  <img  className="shoe"  src={thumbnail2}
-                    onMouseEnter={handleImg}
-                  alt="" />
-                  <img  className="shoe"  src={thumbnail3}
-                    onMouseEnter={handleImg }
-                  alt="" />
-                  <img  className="shoe "  src={thumbnail4} 
-                    onMouseEnter={handleImg }
-                  alt="" />
-              </div>
-          </div>
+            <img className='zoom-shoe' src={product} alt="" />
+            <div className="shoe-flex" >
+            <img className="shoe first" src={thumbnail1} 
+              onClick={ShoeClick}
+              onMouseEnter={handleImg}
+            alt="" />
+            <img  className="shoe"  src={thumbnail2}
+               onClick={ShoeClick}
+              onMouseEnter={handleImg}
+            alt="" />
+            <img  className="shoe"  src={thumbnail3}
+               onClick={ShoeClick}
+              onMouseEnter={handleImg }
+            alt="" />
+            <img  className="shoe "  src={thumbnail4} 
+               onClick={ShoeClick}
+              onMouseEnter={handleImg }
+            alt="" />
+        </div>
+    </div>
           <div className="product-info">
               <div className="description">
                  <div className='adv'>

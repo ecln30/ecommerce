@@ -1,19 +1,6 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React from 'react';
-function Navbar({cart,avatar,category, toggleCart, addCart, item, isActive, cmdEnter, cmdLeave, cmdClick
+function Navbar({cart,avatar, toggleCart, menu, item, isShow, cmdEnter, cmdLeave, cmdClick
 }){
 
    
@@ -51,7 +38,7 @@ function Navbar({cart,avatar,category, toggleCart, addCart, item, isActive, cmdE
            <div className="cart-img">
              <p className="amount"
              style={{
-               visibility: isActive ? "visible" : "hidden"
+               visibility: isShow ? "visible" : "hidden"
              }}
              >{item.count}</p>
              <img  className="cart" src={cart} onClick={toggleCart} alt="" /> 

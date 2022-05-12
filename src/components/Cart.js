@@ -1,27 +1,12 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React from 'react';
 
-
-function Cart({addCart, item}) {
+function Cart({ item}) {
     return ( 
         <div className="empty-cart">
          <div className="head">
           <h2>Cart</h2>  
          </div>
-          <hr className="crossBar" />
+           <hr className="crossBar" />
          <div className="empty-cart-body">
             { 
                item.count > 0 ? (  

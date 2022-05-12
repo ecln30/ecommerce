@@ -21,6 +21,7 @@ import Cart from "./components/Cart"
 import del from  "./images/icon-delete.svg"
 import Body from "./components/Body"
 import {useState, useEffect} from "react"
+import Slider from "./components/Slider"
 
 
 function App() {
@@ -31,8 +32,9 @@ function App() {
   const [img, setImg] = useState(thumbnail1)
   const [product, setProduct] = useState(product1)
   const [isActive, setIsActive] = useState(false);
-  const [isHover, setIsHover] = useState(false)
-  const [styles, setStyles] = useState({})
+  const [isShow, setIsShow] = useState(false)
+  const [styles, setStyles] = useState({display: "none"})
+  const[shoe,setShoe]= useState(product1)
   const [ item, setItem] = useState({
     name: name,
     count: count,
@@ -41,11 +43,12 @@ function App() {
     img:[img, del]
   })
 
+
 useEffect(() => {
   localStorage.setItem('num', JSON.stringify(count));
 }, [count]);
 
-useEffect( f => {
+useEffect( () => {
   const stored = localStorage.getItem("num");
   const initial = stored ? JSON.parse(stored) : 0;
    console.log(initial)
@@ -74,7 +77,7 @@ useEffect( f => {
       }
   }
 
-    function handleImg(e) {
+  function handleImg(e) {
        let el = e.currentTarget
        if(el.src === thumbnail1) {
          setProduct(product1)
@@ -91,25 +94,25 @@ useEffect( f => {
   }
 
   function addCart(){
-    setIsActive(true)
+    setIsShow(true)
   }
 
   function cmdEnter(e) {
       const el = e.currentTarget
       if(el.textContent === "Collections") {
-         setStyles({left: -320, width: 80})
+         setStyles({left: "31.3%", width: 80})
       }
       else if(el.textContent === "Man" ) {
-          setStyles({left: - 224, width: 40  })
+          setStyles({left:" 37%", width: 40  })
       }
       else if(el.textContent === "Woman" ) {
-          setStyles({left: -145, width: 50})
+          setStyles({left: "41%", width: 50})
       }
       else if(el.textContent === "About" ) {
-          setStyles({left: -60, width: 50 })
+          setStyles({left: "45.3%", width: 50 })
       }
       else if(el.textContent === "Contact" ) {
-         setStyles({left: 30 , width: 60})
+         setStyles({left:"49.5%", width: 60})
       }
   }
 
@@ -133,17 +136,70 @@ useEffect( f => {
   }
 
   function cmdClick(e) {
-    
+     
   }
+
+  function ShoeClick() {
+      setIsActive(true)
+  }
+
+  function closeImg() {
+    setIsActive(false)
+  }
+
+  function Last(){
+    if( shoe === product4) {
+      setShoe(product3)
+    }
+    if( shoe === product3) {
+      setShoe(product2)
+    }
+    if( shoe === product2) {
+      setShoe(product1)
+    }
+    if( shoe === product1) {
+      setShoe(product4)
+    }
+   
+  }
+  function Next(e) {
+     
+    if( shoe === product1) {
+      setShoe(product2)
+    }
+    if( shoe === product2) {
+      setShoe(product3)
+    }
+    if( shoe === product3) {
+      setShoe(product4)
+    }
+    if( shoe === product4) {
+      setShoe(product1)
+    }
+     
+  }
+
+
 
   return (
     <main className="App">
-      <Navbar cart={cart} avatar={avatar} toggleCart={toggleCart} addCart={addCart} isActive={isActive} item={item} cmdLeave={cmdLeave} cmdEnter={cmdEnter} 
+      <Navbar cart={cart} avatar={avatar} toggleCart={toggleCart} addCart={addCart} isShow={isShow} item={item} cmdLeave={cmdLeave} cmdEnter={cmdEnter} 
       cmdClick={cmdClick}
       />
       <hr className="selectbar" style={styles} />
       <hr />
      { !isHidden && <Cart  item={item} />}
+         { <Slider 
+            close={close} 
+            menu={menu} 
+            next={next}
+            Next={Next}
+            Last={Last}
+            isActive={isActive}
+            closeImg={closeImg}
+            shoe={shoe}
+            previous={previous}
+         />}
       <Body 
         close={close} 
         menu={menu} 
@@ -157,6 +213,7 @@ useEffect( f => {
         thumbnail4={thumbnail4}
         handleCount={handleCount}
         handleImg={handleImg}
+        ShoeClick={ShoeClick}
         product={product}
         isActive={isActive}
         addCart={addCart}
